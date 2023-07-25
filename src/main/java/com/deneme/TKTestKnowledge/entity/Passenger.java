@@ -19,7 +19,6 @@ public class Passenger {
    private String lastUseCard;
    private String cvv;
 
-   // fiyat flightlistten çekilecek
    public Passenger() {
       super();
    }
