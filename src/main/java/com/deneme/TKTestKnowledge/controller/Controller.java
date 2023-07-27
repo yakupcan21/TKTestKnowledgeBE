@@ -55,21 +55,6 @@ public class Controller {
         if(ticket.isPresent()) return ticket.get();
         return new Ticket();
     }
-
-
-
-    /*
-    {
-        ticket-no: 234,
-        arrival
-        departure
-        seat no
-        date and time
-    }
-
-    sql inner join left join
-    select * from ticket as q1 inner join flightlist as q2 on q2.id =q1.flight-id
-    */
     @PostMapping(path = "/createPassenger") // Different endpoint path for creating User
     public Passenger post(@RequestBody Passenger user) { return passengerRepository.save(user); }
 
@@ -77,22 +62,6 @@ public class Controller {
     public FlightList post(@RequestBody FlightList flightList) { return flightListRepository.save(flightList); }
 
     @PostMapping(path = "/createTicket")
-    public Ticket createTicket(@RequestBody Ticket ticket) {
-        Long flightListId = ticket.getFlightList().getId();
-        Optional<FlightList> flightList = flightListRepository.findById(flightListId);
+    public Ticket post(@RequestBody Ticket ticket)  { return ticketRepository.save(ticket); }
 
-        if (flightList.isPresent()) {
-            FlightList foundFlightList = flightList.get();
-            ticket.setDate(foundFlightList.getDate());
-            ticket.setTime(foundFlightList.getTime());
-            ticket.setArrival_airport(foundFlightList.getArrival_airport());
-            ticket.setDeparture_airport(foundFlightList.getDeparture_airport());
-
-            return ticketRepository.save(ticket);
-        } else {
-            throw new RuntimeException("FlightList not found with ID: " + flightListId);
-        }
     }
-
-}
-

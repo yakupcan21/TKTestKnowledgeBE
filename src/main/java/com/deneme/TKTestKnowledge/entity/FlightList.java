@@ -32,7 +32,5 @@ public class FlightList {
         this.time = time;
         this.price = price;
         this.flight_no = flight_no;
-
     }
-
 }

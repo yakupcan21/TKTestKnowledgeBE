@@ -30,7 +30,6 @@ public class Passenger {
       this.card_no = card_no;
       this.lastUseCard = lastUseCard;
       this.cvv = cvv;
-
    }
 
    @ManyToOne
